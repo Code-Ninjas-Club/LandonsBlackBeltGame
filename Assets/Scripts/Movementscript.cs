@@ -123,5 +123,9 @@ public class Movementscript : MonoBehaviour
             healthBarImage.sprite = pictures[2];
         }
         // if the health is less then 0 Game over.
+        else if(playerHealth == 0)
+        {
+            
+        }
     }
 }

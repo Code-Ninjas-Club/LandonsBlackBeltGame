@@ -17,4 +17,8 @@ public class Scenechanger : MonoBehaviour
     {
         SceneManager.LoadScene("Level 1");
     }
+    public void Credits()
+    {
+        SceneManager.LoadScene("Credits");
+    }
 }
