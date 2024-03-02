@@ -47,8 +47,10 @@ public class Movementscript : MonoBehaviour
         transform.Translate(X * Time.deltaTime * 10, 0, 0);
         if (Input.GetButtonDown("Jump") && jumps < maxjumps)
         {
+            StartCoroutine(resetAnimations("Jump"));
             Michelsoftbinbos.velocity = new Vector3(0, jumpForce, 0);
             jumps += 1;
+            anim.SetBool("Jump", true);
         }
 
         if (this.transform.position.y < -6.42)
