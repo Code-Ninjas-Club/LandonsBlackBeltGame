@@ -15,7 +15,9 @@ public class Movementscript : MonoBehaviour
     public Sprite[] pictures;
     public Image healthBarImage;
     int jumps = 0;
-    int maxjumps = 2; 
+    int maxjumps = 2;
+    bool Noattackyet = false;
+    bool attackdone = true;
 
     void Update()
     {
@@ -53,24 +55,28 @@ public class Movementscript : MonoBehaviour
         {
             StartCoroutine(ExampleCoroutine());
         }
-        if (Input.GetKeyDown(KeyCode.X) && !anim.GetBool("Attack1") && !anim.GetBool("Attack2"))
+        if (Input.GetKeyDown(KeyCode.X) && !anim.GetBool("Attack") && Noattackyet == true)
         {
-            StartCoroutine(resetAnimations("Attack1"));
-            anim.SetBool("Attack1", true);
+            anim.SetBool("Attack", true);
+            StartCoroutine(resetAnimations("Attack"));
+            
         }
-        if (Input.GetKeyDown(KeyCode.C) && !anim.GetBool("Attack1") && !anim.GetBool("Attack2"))
+        if (Input.GetKeyDown(KeyCode.C) && !anim.GetBool("Attack1") && !anim.GetBool("Attack2") && Noattackyet == true)
         {
             StartCoroutine(resetAnimations("Attack2"));
             anim.SetBool("Attack2", true);
         }
+
+        if (!anim.GetBool("Start attack") && (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Z)))
+        {
+            StartCoroutine(resetAnimations("Start attack"));
+            anim.SetBool("Start attack", true);
+            Noattackyet = true;
+        }
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<Enemy>())
-        {
-            collision.gameObject.GetComponent<Enemy>().damageEnemy(3);
-            PlayerHealth(3);
-        }
+        
 
        if (collision.gameObject.tag == "Ground") 
         {
@@ -78,7 +84,23 @@ public class Movementscript : MonoBehaviour
             jumps = 0;
         }
     }
-     
+
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.GetComponent<Enemy>())
+        {
+            if (anim.GetBool("Attack") && attackdone)
+            {
+                print("Damaged Enemy");
+                collision.gameObject.GetComponent<Enemy>().damageEnemy(1);
+                attackdone = false;
+            }
+
+
+            PlayerHealth(3);
+        }
+    }
+
 
     IEnumerator ExampleCoroutine()
     {
@@ -97,7 +119,13 @@ public class Movementscript : MonoBehaviour
     {
         yield return new WaitForSeconds(0.3f);
         anim.SetBool(animation, false);
+        if(animation == "Attack")
+        {
+            attackdone = true;
+        }
     }
+
+
     public float playerHealth;
     public float playerMaxHealth;
 

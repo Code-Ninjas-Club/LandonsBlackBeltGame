@@ -64,6 +64,23 @@ public class Enemy : MonoBehaviour
         {
             jump();
         }
+    
+        
+        if (enemyHealth <= 0)
+        {
+            Storeddata.gainxp(5);
+            Destroy(gameObject);
+            int goldchance = Random.Range(1,4);
+           if(goldchance != 1)
+            {
+                Storeddata.setgold(Storeddata.getgold() + Random.Range(1,10));
+            }
+            
+        }
+        if (enemyHealth > enemyMaxHealth)
+        {
+            enemyHealth = enemyMaxHealth;
+        }
     }
 
     void jump()

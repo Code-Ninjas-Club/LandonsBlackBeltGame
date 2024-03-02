@@ -21,4 +21,8 @@ public class Scenechanger : MonoBehaviour
     {
         SceneManager.LoadScene("Credits");
     }
+    public void Settings()
+    {
+        SceneManager.LoadScene("Settings");
+    }
 }
