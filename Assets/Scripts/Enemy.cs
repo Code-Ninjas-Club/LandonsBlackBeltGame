@@ -15,10 +15,12 @@ public class Enemy : MonoBehaviour
     int maxjumps = 2;
     int jumps = 0;
     bool Onground = false;
+    bool StopAttack = false;
+    public float detectionrange;
     void Start()
     {
         enemyHealth = enemyMaxHealth;
-
+        player = null;
     }
     public void damageEnemy(float damage)
     {
@@ -27,18 +29,31 @@ public class Enemy : MonoBehaviour
     }
      void Update()
     {
-        if(transform.position.x < player.position.x)
+        Collider2D Detectionzone = Physics2D.OverlapCircle(transform.position, detectionrange, 1 << 3);
+        if (player == null)
         {
-            Rb.velocity = new Vector2(speed, Rb.velocity.y);
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+            print("Hello world!");
         }
-        else
+
+        if (Detectionzone)
         {
-         if(transform.position.x == player.position.x)
+
+
+            if (transform.position.x < player.position.x)
             {
-                return;
+                Rb.velocity = new Vector2(speed, Rb.velocity.y);
             }
-            Rb.velocity = new Vector2(speed * -1, Rb.velocity.y);
+            else
+            {
+                if (transform.position.x == player.position.x)
+                {
+                    return;
+                }
+                Rb.velocity = new Vector2(speed * -1, Rb.velocity.y);
+            }
         }
+
         float X = Input.GetAxis("Horizontal");
         if (X != 0)
         {
@@ -50,6 +65,7 @@ public class Enemy : MonoBehaviour
         }
 
         RaycastHit2D Beam;
+        
 
         if (Rb.velocity.x < 0)
         {
@@ -88,6 +104,7 @@ public class Enemy : MonoBehaviour
        Rb.velocity = new Vector3(0, jumpForce, 0);
         jumps += 1;
     }
+    // Add more if statements when you add more characters \/ 
      void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground")
@@ -95,5 +112,30 @@ public class Enemy : MonoBehaviour
             Onground = true;
             jumps = 0;
         }
+        if (collision.gameObject.tag == "Player" && StopAttack == false)
+        {
+            StartCoroutine(damageplayer(collision.gameObject));
+            print("damaged player");
+        }
+    }
+
+    IEnumerator damageplayer(GameObject player)
+    {
+        StopAttack = true;
+        RobotMovementscript rm = player.GetComponent<RobotMovementscript>();
+        SnoweysMovementscript sm = player.GetComponent<SnoweysMovementscript>();
+
+        if (rm == null)
+        {
+            // Snowey
+            sm.PlayerHealth(5);
+        }
+        else
+        {
+            //Robot
+            rm.PlayerHealth(5);
+        }
+        yield return new WaitForSeconds(3);
+        StopAttack = false;
     }
 }

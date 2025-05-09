@@ -6,11 +6,12 @@ TagManager:
   tags:
   - Ground
   - Enemy
+  - Pause
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Teh ultamte player!
   - Water
   - UI
   - Ground

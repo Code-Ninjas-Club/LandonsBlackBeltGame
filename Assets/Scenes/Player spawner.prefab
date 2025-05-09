@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4817899297956433302
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4817899297956433300}
+  - component: {fileID: 4817899297956433303}
+  m_Layer: 0
+  m_Name: Player spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4817899297956433300
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4817899297956433302}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 129.9756, y: -195.28615, z: -0.9587526}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4817899297956433303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4817899297956433302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fbc1f9b1a2d21e4badda4e8c8b7cf73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Snowy: {fileID: 3079670219062870606, guid: 3417d816a77a7d0458538cd899371f19, type: 3}
+  ShapeRobot: {fileID: 142670391881512853, guid: 061b14d6631f03a4a89b322f70437c79, type: 3}
+  virtualCamera: {fileID: 0}
+  pictures:
+  - {fileID: -6007857137893288414, guid: 06aa405d9dcd0d04e977ea72253e3ea5, type: 3}
+  - {fileID: 4245052342988409972, guid: 06aa405d9dcd0d04e977ea72253e3ea5, type: 3}
+  - {fileID: -7732569738864306783, guid: 06aa405d9dcd0d04e977ea72253e3ea5, type: 3}
+  - {fileID: 21300000, guid: 6ed33d7a2d8600d4ea6e9c8020dc420b, type: 3}
+  healthBarImage: {fileID: 0}

@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 3079670219062870577}
   - component: {fileID: 3079670219062870581}
   - component: {fileID: 3079670219062870580}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,9 +102,9 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.0049789995, y: 0.0050932467}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0.099999994, w: 0}
+    border: {x: 0, y: 0, z: 0.3125, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.23, y: 0.24}
+    oldSize: {x: 0.71875, y: 0.75}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -169,12 +169,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Michelsoftbinbos: {fileID: 3079670219062870577}
   audioSource: {fileID: 0}
+  pausemenu: {fileID: 0}
   jumpForce: 5
   anim: {fileID: 3079670219062870581}
   pictures: []
   healthBarImage: {fileID: 0}
-  playerHealth: 0
-  playerMaxHealth: 0
+  playerHealth: 50
+  playerMaxHealth: 50
 --- !u!1 &4092049311327056955
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,7 +185,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3965627512503461449}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
